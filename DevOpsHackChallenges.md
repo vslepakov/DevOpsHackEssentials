@@ -53,9 +53,9 @@ You probably are alread working with Version Control today. Maybe you're using G
 |3.| Modify your repo to require a pull request to merge code into your master branch
 |4.| Modify your repo to require a Work Item linked to a pull request
 |5.| Configure your repo to require at least one of your colleagues as approver
-|6.| Create a new Branch. Check it out and modify code locally changing the displayed title of the Demo Website. Commit the change, then initiate and complete a pull request. Link a work item and follow the review process.
+|6.| Create a new Branch. Check it out and modify code locally changing the displayed title of the Demo Website. Commit the change, then initiate and complete a pull request. Link a work item and follow the review process
 |7.| Investigate the history of the file committed following the trace from the work item
-|8.| Revisit this challenge after you have successfully created a Build definition and change the Branch Policie to also require a successful build. Create a Pull Request to see it working.
+|8.| Revisit this challenge after you have successfully created a Build definition and change the Branch Policie to also require a successful build. Create a Pull Request to see it working
 
 # DevOps Challenge \#4 - Build Configuration for CI #
 In this challenge, you will set up a build definition for your project and configure it for continuous integration. 
@@ -64,22 +64,20 @@ If you need help check out the [:blue_book: Build Configuration Hints](/BuildCon
 After this challenge you'll have a system set up where you can trigger a new build with every code change on a specific branch. This is the first step towards a full Continuous Integration / Continuous Deployment (CI/CD) pipeline. You'll learn how to modify build definitions, how to set triggers and how to add tasks which gives you a basic understanding of configuration options for Azure DevOps. If you're working with CI already you might have set up a similar definition already in another tool like Jenkins or Bamboo. While it's always possible to trigger external systems or to integrate steps to activate e.g. Jenkins, in this challenge you'll set up a definition for usage of cloud builds orchestrated via Azure DevOps.
 
 ## Achievements ##
-| # | Achievement   | Maximum score |
-|-|-|-|
-|1| Create a new build definition "CI Build" | 10 |
-|1| Configure your build definition to build the ASP.NET Core website. Choose *Hosted Linux Preview* as agent or add make sure your agent has the correct .NET SDK installed. (2.0.0 should work!) | 10 |
-|1| Modify your build definiton for CI - so set the trigger to build with every new push to the master branch| 10 |
-|1| Clone your build definition, call the clone "PR Build" and set the trigger to Pull Request (see Branch Policies) | 10 |
-|1| Modify your source code locally, push the code, trigger a PR and follow the Pipeline in the UI. You will be able to see the build output realtime-like. | 10 |
-|1| Add another Build Task to copy the ARM-Templates to make them accessible for the release definitions. Use "Publish Build Artifacts" task.| 10 |
-
-
-## Bonus Goals ##
-| # | Bonus Goal | Maximum score |
-|-|-|-|
-|1| Create a private build agent (e.g. on your local machine or any VM) and spin it up so it is connected to your account. (You can find the required agent application in your Azure DevOps portal for download). | 10 |
-|1| Modify your CI build to create a work item on failure. | 10 |
-
+| # | Achievement   |
+|-|-|
+|1.| Create a new build definition named "CI Build" under Pipelines --> Builds. Choose **Use the visual designer**
+|2.| Configure your build definition to build a docker container.
+|3.| Configure "Build an image" and "Push an image" tasks to use your Azure Subscription and your Azure Container Registry
+|4.| Add and configure "Install Helm" and "Helm package" tasks
+|5.| In case you create you Cloud environment from scratch copy ARM templates so they can be used in the Release phase. **Otherwise skip this step**
+|6.| Publish all build artifacts so we can use them in the Release Phase
+|7.| Modify your build definiton for CI - so set the trigger to build with every new push to the master branch
+|8.| Clone your build definition, call the clone "PR Build" and set the trigger to Pull Request (see Branch Policies)
+|9.| On the cloned "PR Build" definition remove the continuous integration trigger
+|10.| Add a "bash" task to the "PR Build" definition and configure it to output the string "Simulating very heavy testing" using "echo"
+|11.| Modify your source code, push the code, trigger a PR and follow the Pipeline in the UI. You will be able to see the build output in realtime.
+|12.| **Optional** Combine "Build an image" and "Push an image" tasks to a Task Group and reuse it. Extract a variables for Azure Container Registry first. On the newly created Task Group make required Azure Subscription a variable
 
 
 # DevOps Challenge \#5 - Release Management #
