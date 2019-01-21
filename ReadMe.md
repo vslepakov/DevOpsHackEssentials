@@ -1,11 +1,9 @@
-# DevOps Hack Essentials 2017 - Guidance
-This content is intended to be used for a led lab provided by Microsoft or partners of Microsoft.
+# DevOps Hack Essentials 2018 - Guidance
+This content is intended to be used for a led lab provided by Microsoft.
 
-The intent is to provide a hands-on experience with Microsoft's DevOps tooling (mostly VSTS and Azure). Most challenges are operating system agnostic, and will be performed with a browser or Git.
+The intent is to provide a hands-on experience with Azure DevOps. Most challenges are operating system agnostic, and can be accomplished within a browser or using a Git client.
 
-Be warned: The format is not a step by step recipie - you will be required to think and depending on your current skill set it will be challening!
-
-You can find a bunch of challenges in [this][1] document.
+You can find all challenges in [this][1] document.
 
 Here'show it works:
 1. Find a bunch of colleagues to build a team and work together. (Ideally you form a team of 2-5 people.)
