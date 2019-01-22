@@ -90,8 +90,8 @@ After this challenge you'll be able to deploy the sample application to an envir
 |-|-|
 |1.| Create a release definition which will be triggered automatically after a successful CI build. Call it "HelloWorld CD" Select "Empty job" as template. Call the stage "Dev". Don't forget to configure the artifact from your CI Build
 |2.| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /ArmTemplates/aks-template.json. Overwrite the parameters as required within the task. Catch ARM template output in a variable named **"deploymentOutputs"**. Use variables if you seeit fit. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions. **Hint: Use the Azure Resource Group Deployment Task"**
-|3.| Since the outputs from our ARM template are in JSON we need a way to extract individual properties with their values and to store them as Pipeline variables for usage in further deployment steps. For that add a PowerShell task and specify [this](/ReleaseManagement/ReleaseManagement.md#Extract variables from ARM template output) script inline. Call the task "Extract from ARM template output"
-|4.| Modify your code locally, push the code and watch the pipeline
+|3.| Since the outputs from our ARM template are in JSON we need a way to extract individual properties with their values and to store them as Pipeline variables for usage in further deployment steps. For that add a PowerShell task and specify [this](/ReleaseManagement/ReleaseManagement.md#Extract-variables-from-ARM-template-output) script inline. Call the task "Extract from ARM template output"
+|4.| Add a 
 |5.| After a successful release investigate the information in the release's overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
 |6.| Create another release environment which deploys to another deployment slot
 
