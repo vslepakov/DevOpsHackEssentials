@@ -1,27 +1,30 @@
 
 #  Release Management Hints
 This is not a step-by-step guide. Instead it's a collection of screenshots which will help you complete the DevOpsHack challenges.
-This is on purpose: We want you to explore and play with the different options of VSTS.
+This is on purpose: We want you to explore and play with the different options of Azure DevOps.
 
 ***Hint: Before you switch windows or close your configuration, make sure you save your modification.***
 
-## Create Release Definition in VSTS
-![Create Release Definition](/ReleaseManagement/images/releaseManagementAdd.jpg)
+## Create Release Definition in Azure DevOps
+![Create Release Definition](/ReleaseManagement/images/dev_stage_create.PNG)
 
-## Choose a Release Definition template in VSTS
-Start with an empty template!
-![Choose a Release Definition template in VSTS](/ReleaseManagement/images/releaseManagementTemplate.jpg)
+## Configure the Artifact
+![Configure the Artifact](/ReleaseManagement/images/specify_artifact.PNG)
 
-## Modify Release Definition Workflow in VSTS
-* Make sure you connect the Output of the build definition as an input artifact.
-* Make sure you set the trigger
-* Add additional environments if required - you can specify if they should be targetd automatically
-* Add "tasks" for your environment to describe the process of deployment
-
-![Modify Release Definition Workflow in VSTS](/ReleaseManagement/images/releaseManagementWorkflow.jpg)
+## Enable CD trigger
+![Enable CD trigger](/ReleaseManagement/images/cd_trigger.PNG)
 
 ## Add task to deploy infrastructure on Azure
-![Add task to deploy infrastructure on Azure](/ReleaseManagement/images/releaseManagementRG.jpg)
+![Add task to deploy infrastructure on Azure](/ReleaseManagement/images/rg_deployment.PNG)
+
+## Extract variables from ARM template output
+```
+$deploymentOutputs=(ConvertFrom-Json '$(deploymentOutputs)')
+$applicationRoutingZone=$deploymentOutputs.applicationRoutingZone.value
+$aiKey=$deploymentOutputs.aiKey.value
+Write-Host "##vso[task.setvariable variable=applicationRoutingZone;]$applicationRoutingZone"
+Write-Host "##vso[task.setvariable variable=aiKey;]$aiKey"
+```
 
 ## Override parameters
 
@@ -32,7 +35,7 @@ You're providing parameters for your ARM Template. Your ARM Template (FullEnviro
 
 **Hint:** AdminPassword and AdminPasswordTest must be equal!
 
-All parameter values like  $(myParametername) are "variables" within VSTS which need to be specified in the variables tab. Make sure you choose a globally unique entry for  servername & websitename.
+All parameter values like  $(myParametername) are "variables" within Azure DevOps which need to be specified in the variables tab. Make sure you choose a globally unique entry for  servername & websitename.
 Additionaly click the lock symbol for your passwords - this will make sure that you can use them, however they'll be hidden.
 
   ``` 

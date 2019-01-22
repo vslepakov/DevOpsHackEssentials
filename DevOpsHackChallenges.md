@@ -70,35 +70,30 @@ After this challenge you'll have a system set up where you can trigger a new bui
 |2.| Configure your build definition to build a docker container.
 |3.| Configure "Build an image" and "Push an image" tasks to use your Azure Subscription and your Azure Container Registry
 |4.| Add and configure "Install Helm" and "Helm package" tasks
-|5.| In case you create you Cloud environment from scratch copy ARM templates so they can be used in the Release phase. **Otherwise skip this step**
+|5.| In case you create your Cloud environment from scratch copy ARM templates so they can be used in the Release phase. **Otherwise skip this step**
 |6.| Publish all build artifacts so we can use them in the Release Phase
 |7.| Modify your build definiton for CI - so set the trigger to build with every new push to the master branch
 |8.| Clone your build definition, call the clone "PR Build" and set the trigger to Pull Request (see Branch Policies)
 |9.| On the cloned "PR Build" definition remove the continuous integration trigger
 |10.| Add a "bash" task to the "PR Build" definition and configure it to output the string "Simulating very heavy testing" using "echo"
 |11.| Modify your source code, push the code, trigger a PR and follow the Pipeline in the UI. You will be able to see the build output in realtime.
-|12.| **Optional** Combine "Build an image" and "Push an image" tasks to a Task Group and reuse it. Extract a variables for Azure Container Registry first. On the newly created Task Group make required Azure Subscription a variable
+|12.| **Optional**: Combine "Build an image" and "Push an image" tasks to a Task Group and reuse it. Extract a variables for Azure Container Registry first. On the newly created Task Group make required Azure Subscription a variable
 
 
 # DevOps Challenge \#5 - Release Management #
 In this challenge, you will release your application to Azure. If you need help check out the [:blue_book: Release Management Hints](/ReleaseManagement/ReleaseManagement.md).
 ## What you get ##
-After this challenge you'll be able to deploy the sample application to an environment hosted in the cloud automatically. You'll be able to target different environments based on a single configuration so that you avoid inconsistencies between dev, test and production environments. You'll be using "infrastructure as code" approaches to specify the required infrastructure - in this case you'll be using ARM (Azure Resource Manager) templates. Maybe you have a similar system running today which might be based on e.g. Chef, Puppet, Octopus. While - again - it's possible to integrate those tools this challenge will help you learn about the integrated automation in Azure DevOps. 
+After this challenge you'll be able to deploy the sample application to an environment hosted on Azure automatically. You'll be able to target different environments based on a single configuration so that you avoid inconsistencies between dev, test and production environments. You'll be using "infrastructure as code" approaches to specify the required infrastructure - in this case you'll be using an ARM (Azure Resource Manager) template to create an AKS cluster and Helm to deploy you application into this cluster.
 
 ## Achievements ##
-| # | Achievement   | Maximum score |
-|-|-|-|
-|1| Create a release definition which will be triggered automatically after a successful build of "CI build". *Hint: Use the Azure Resource Group Deployment Task* | 30 |
-|1| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /env/Templates/FullEnvironmentSetupMerged.json and also use the provided parameters file in the same folder. Overwrite the parameters as required. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions.  (See hints.)  | 10 |
-|1| Modify your release definition to deploy your application. Use task "Azure Deploy App Service". Use your the name of your website as App Service Name. Pick to deploy to slot "Dev". *Hint: You can use variables for the values provided. Typically you'd work with values provided by a dropdown list. In our case those values might not exisit yet, so we have to provide them manually.*| 10 |
-|1| Modify your code locally, push the code and watch the pipeline. | 10 |
-|1| After a successful release investigate the information in the release's overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items. | 10 |
-|1| Create another release environment which deploys to another deployment slot. | 10 |
-
-## Bonus Goals ##
-| # | Bonus Goal   | Maximum score |
-|-|-|-|
-|1|Add a 3rd deployment slot called "Test" by modifiying your ARM template accordingly.|50|
+| # | Achievement   |
+|-|-|
+|1.| Create a release definition which will be triggered automatically after a successful CI build. Call it "HelloWorld CD" Select "Empty job" as template. Call the stage "Dev". Don't forget to configure the artifact from your CI Build
+|2.| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /ArmTemplates/aks-template.json. Overwrite the parameters as required within the task. Catch ARM template output in a variable named **"deploymentOutputs"**. Use variables if you seeit fit. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions. **Hint: Use the Azure Resource Group Deployment Task"**
+|3.| Since the outputs from our ARM template are in JSON we need a way to extract individual properties with their values and to store them as Pipeline variables for usage in further deployment steps. For that add a PowerShell task and specify [this](/ReleaseManagement/ReleaseManagement.md#Extract variables from ARM template output) script inline. Call the task "Extract from ARM template output"
+|4.| Modify your code locally, push the code and watch the pipeline
+|5.| After a successful release investigate the information in the release's overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
+|6.| Create another release environment which deploys to another deployment slot
 
 
 
