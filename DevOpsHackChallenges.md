@@ -1,6 +1,6 @@
 ## What is Azure DevOps? ##
 Think of Azure DevOps as an integrated solution to support you throughout development and deployment of software. It covers a lot of tasks which typically can be found in distributed tools in a central place which can make your live easier but which also allows easy combination of artifacts and data and simplifies maintainance.
-* An Azure DevOps organization is reflected by an URL like https://dev.azure.com/[myorg name]. For huge companies it can make sense to have multiple Azure DevOps organizations. Often a single Azure DevOps organization is sufficient as one organization can be used for a huge number of projects.
+* An Azure DevOps organization is reflected by an URL like https://dev.azure.com/[myorg-name]. For huge companies it can make sense to have multiple Azure DevOps organizations. Often a single Azure DevOps organization is sufficient as one organization can be used for a huge number of projects.
 * A Project is created within an Azure DevOps organization and is used to wrap all kinds of artifacts which are somehow are related to the development of a single software solution. Sharing artifacts across projects is limited. 
 * A Project can host an unlimited number of Source Code repositories, work items for work planning, build and release definitions etc. 
 * A Project can host several teams - a number of persons working on a specific set of tasks. It is possible to put a single person into mutlipe teams.
