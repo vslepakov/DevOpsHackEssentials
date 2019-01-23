@@ -91,33 +91,24 @@ After this challenge you'll be able to deploy the sample application to an envir
 |1.| Create a release definition which will be triggered automatically after a successful CI build. Call it "HelloWorld CD" Select "Empty job" as template. Call the stage "Dev". Don't forget to configure the artifact from your CI Build
 |2.| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /ArmTemplates/aks-template.json. Overwrite the parameters as required within the task. Catch ARM template output in a variable named **"deploymentOutputs"**. Use variables if you seeit fit. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions. **Hint: Use the Azure Resource Group Deployment Task"**
 |3.| Since the outputs from our ARM template are in JSON we need a way to extract individual properties with their values and to store them as Pipeline variables for usage in further deployment steps. For that add a PowerShell task and specify [this](/ReleaseManagement/ReleaseManagement.md#Extract-variables-from-ARM-template-output) script inline. Call the task "Extract from ARM template output"
-|4.| Add a 
-|5.| After a successful release investigate the information in the release's overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
-|6.| Create another release environment which deploys to another deployment slot
-
-
+|4.| Add the "Deploy to Kubernetes" task to your pipeline. Configure this task to setup tiller (serverside Helm) based on /ArmTemplates/setup-tiller-namespace.yaml. Use Kubernetes namespace "sampleapp" (variable?)
+|5.| Add "Helm tool installer" task to install Helm command line tool 
+|6.| Add "Package and deploy Helm charts" task, name it "Helm init" and configure it to execute "helm init command. Use "--service-account tiller" as argument
+|7.| Finally add "Package and deploy Helm charts" task, name it "Helm upgrade" and configure it to deploy our Helm chart using the "upgrade" command. Pass [these arguments](/ReleaseManagement/ReleaseManagement.md#Helm-upgrade-arguments)
+|8.| After a successful release investigate the information in the release overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
+|6.| Create another release environment called "Staging" and configure it to require manual approval
 
 # CONGRATULATIONS #
-Congrats! You've passed the essential challenges. Now take a step back, relax and explore: Azure DevOps automatically combines all the information you provide - see if you can find an easy way to figure out which features have been implemented newly in your latest release compared to the release 2 releases ago?
+Congrats! You've accomplished the essential challenges. Now take a step back, relax and explore: Azure DevOps automatically combines all the information you provide - see if you can find an easy way to figure out which features have been implemented newly in your latest release compared to prevouos releases?
 
-Take your time to explore Azure DevOps and all the other options available - whether it's Wiki or the Test Hub. If you have some time left, here are even more challenges.
-
-
-# DevOps Bonus Challenge #6 - Automated Testing #
-In this challenge, you will integrate automated tests into your application.
-If you need help check out the [:blue_book: Auto Test Hints](/AutoTest/AutoTest.md).
+# DevOps Bonus Challenge #6 - Load Tests #
+In this challenge, you will run load tests against your deployed application
 ## What you get ##
-After this challenge you'll be running a test on your newly deployed application whenever it's been updated.
+After this challenge you'll be able to run a load test against your newly deployed application and explore the test results.
 ## Achievements ##
-| # | Achievement   | Maximum score |
-|-|-|-|
-|1|  Create an automated performance test for the start page of your website which will be executed after deploying to environment "Dev". Configure it to simulate 100 users over 2 minutes. Configure it to fail if response times are larger then 5 seconds. *Hint: There's a task which will help you.*| 10 |
-
-## Bonus Goals ##
-| # | Bonus Goal   | Maximum score |
-|-|-|-|
-|1| Create a (multi-step) cloud based load test for your website which will be executed after release to test environment.Use the loadtest provided. | 10 |
-|1| Visual Studio users only: Use VS to record a new webtest and use it during release. | 10 |
+| # | Achievement   |
+|-|-|
+|1| Under "Test Plans" create an automated load test using an http archive (*.har). Configure it to simulate 100 users over 2 minutes. *Hint: Use [this guidance](https://docs.microsoft.com/en-us/azure/devops/test/load-test/record-and-replay-cloud-load-tests?view=vsts#create-a-load-test-using-the-http-archive-file)*
 
 
 

@@ -26,25 +26,19 @@ Write-Host "##vso[task.setvariable variable=applicationRoutingZone;]$application
 Write-Host "##vso[task.setvariable variable=aiKey;]$aiKey"
 ```
 
-## Override parameters
+## Setup tiller
+![Setup tiller](/ReleaseManagement/images/setup_tiller.PNG)
 
-**Make sure you copy the whole line and do not forget some leading or trailing parts of the string!**
-**Hint:** Some browsers allow to triple-click the following line to mark it end to end. This allows easy copy & paste.)
-In case you're wondering what you're doing here:
-You're providing parameters for your ARM Template. Your ARM Template (FullEnvironmentSetupMerged.json) describes an infrastructure on Azure (Infrastructure as code). You typically parameterize this ARM template to be more flexible when it comes to e.g. website names or DB connections.
+## Add "Helm tool installer" task to install Helm command line tool
+![Install Helm](/ReleaseManagement/images/install_helm.PNG)
 
-**Hint:** AdminPassword and AdminPasswordTest must be equal!
+## Helm init
+![Helm init](/ReleaseManagement/images/helm_init.PNG)
 
-All parameter values like  $(myParametername) are "variables" within Azure DevOps which need to be specified in the variables tab. Make sure you choose a globally unique entry for  servername & websitename.
-Additionaly click the lock symbol for your passwords - this will make sure that you can use them, however they'll be hidden.
+## Helm upgrade
+![Helm upgrade](/ReleaseManagement/images/helm_upgrade.PNG)
 
-  ``` 
-  -WebsiteName $(WebsiteName) -PartsUnlimitedServerName $(ServerName) -PartsUnlimitedServerAdminLogin AdminUser -PartsUnlimitedServerAdminLoginPassword "(ConvertTo-SecureString -String '$(AdminPassword)' -AsPlainText -Force)" -PartsUnlimitedServerAdminLoginPasswordForTest "(ConvertTo-SecureString -String '$(AdminTestPassword)' -AsPlainText -Force)" -PartsUnlimitedDBName PartsUnlimitedDB -PartsUnlimitedDBCollation SQL_Latin1_General_CP1_CI_AS -PartsUnlimitedDBEdition Basic -PartsUnlimitedHostingPlanName $(HostingPlan) -PartsUnlimitedHostingPlanSKU Standard -PartsUnlimitedHostingPlanWorkerSize 0 -EnableRules true -CdnStorageAccountName $(StorageAccountName) -CdnStorageContainerName $(ContainerName) -CdnStorageAccountNameForDev $(StorageAccountName)-dev -CdnStorageContainerNameForDev $(ContainerName)-dev -CdnStorageAccountNameForStaging $(StorageAccountName)-stage -CdnStorageContainerNameForStaging $(ContainerName)-stage  
+## Helm upgrade arguments
 ```
-
-
-
-## Specify all parameters
-Make sure both passwords are equal!
-
-![Specify paras as parameters](/ReleaseManagement/images/releaseManagementParajpg.JPG)
+--set image.repository=vislepakakslabacr.azurecr.io/akslab14c8 --set image.tag=$(Build.BuildId) --set ingress.enabled=true --set ingress.hostname=$(namespace)-sampleapp.$(applicationRoutingZone) --set applicationInsights.InstrumentationKey=$(aiKey)
+```
