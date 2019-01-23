@@ -94,9 +94,9 @@ After this challenge you'll be able to deploy the sample application to an envir
 |4.| Add the "Deploy to Kubernetes" task to your pipeline. Configure this task to setup tiller (serverside Helm) based on /ArmTemplates/setup-tiller-namespace.yaml. Use Kubernetes namespace "sampleapp" (variable?)
 |5.| Add "Helm tool installer" task to install Helm command line tool 
 |6.| Add "Package and deploy Helm charts" task, name it "Helm init" and configure it to execute "helm init command. Use "--service-account tiller" as argument
-|7.| Finally add "Package and deploy Helm charts" task, name it "Helm upgrade" and configure it to deploy our Helm chart using the "upgrade" command. Pass [these arguments](/ReleaseManagement/ReleaseManagement.md#Helm-upgrade-arguments)
+|7.| Finally add "Package and deploy Helm charts" task, name it "Helm upgrade" and configure it to deploy our Helm chart using the "upgrade" command. Pass [these arguments](/ReleaseManagement/ReleaseManagement.md#helm-upgrade-arguments)
 |8.| After a successful release investigate the information in the release overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
-|6.| Create another release environment called "Staging" and configure it to require manual approval
+|9.| Create another release environment called "Staging" and configure it to require manual approval
 
 # CONGRATULATIONS #
 Congrats! You've accomplished the essential challenges. Now take a step back, relax and explore: Azure DevOps automatically combines all the information you provide - see if you can find an easy way to figure out which features have been implemented newly in your latest release compared to prevouos releases?
