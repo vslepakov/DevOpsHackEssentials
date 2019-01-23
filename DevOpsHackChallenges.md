@@ -64,6 +64,7 @@ If you need help check out the [:blue_book: Build Configuration Hints](/BuildCon
 After this challenge you'll have a system set up where you can trigger a new build with every code change on a specific branch. This is the first step towards a full Continuous Integration / Continuous Deployment (CI/CD) pipeline. You'll learn how to modify build definitions, how to set triggers and how to add tasks which gives you a basic understanding of configuration options for Azure DevOps. If you're working with CI already you might have set up a similar definition already in another tool like Jenkins or Bamboo. While it's always possible to trigger external systems or to integrate steps to activate e.g. Jenkins, in this challenge you'll set up a definition for usage of cloud builds orchestrated via Azure DevOps.
 
 ## Achievements ##
+**In case you do not have an Azure Container Registry you can use the ARM template located here /ArmTemplates/containerRegistry-template.json to create one. Use an appropriate build task for that**
 | # | Achievement   |
 |-|-|
 |1.| Create a new build definition named "CI Build" under Pipelines --> Builds. Choose **Use the visual designer**
@@ -83,13 +84,15 @@ After this challenge you'll have a system set up where you can trigger a new bui
 # DevOps Challenge \#5 - Release Management #
 In this challenge, you will release your application to Azure. If you need help check out the [:blue_book: Release Management Hints](/ReleaseManagement/ReleaseManagement.md).
 ## What you get ##
-After this challenge you'll be able to deploy the sample application to an environment hosted on Azure automatically. You'll be able to target different environments based on a single configuration so that you avoid inconsistencies between dev, test and production environments. You'll be using "infrastructure as code" approaches to specify the required infrastructure - in this case you'll be using an ARM (Azure Resource Manager) template to create an AKS cluster and Helm to deploy you application into this cluster.
+After this challenge you'll be able to deploy the sample application to an environment hosted on Azure automatically. You'll be able to target different environments based on a single configuration so that you avoid inconsistencies between dev, test and production environments. You'll be using "infrastructure as code" approaches to define required resources. In this particular case you'll be using an ARM (Azure Resource Manager)template to create an AKS cluster and Helm to deploy you application into this cluster.
 
 ## Achievements ##
+**Please ensure that you have service principal id and key (required for AKS creation). Furthermore ensure that AKS service principal is configured to access your Azure Container Registry**
+
 | # | Achievement   |
 |-|-|
 |1.| Create a release definition which will be triggered automatically after a successful CI build. Call it "HelloWorld CD" Select "Empty job" as template. Call the stage "Dev". Don't forget to configure the artifact from your CI Build
-|2.| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /ArmTemplates/aks-template.json. Overwrite the parameters as required within the task. Catch ARM template output in a variable named **"deploymentOutputs"**. Use variables if you seeit fit. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions. **Hint: Use the Azure Resource Group Deployment Task"**
+|2.| Add a task to deploy the required infrastructure on Azure. Use the ARM Template provided  in /ArmTemplates/aks-template.json. Overwrite the parameters as required within the task. Catch ARM template output in a variable named **"deploymentOutputs"**. Use variables if you see it fit. Make sure you're using globally unique values by e.g. adding a random string at the end. Otherwise you might run into collisions. **Hint: Use the Azure Resource Group Deployment Task"**
 |3.| Since the outputs from our ARM template are in JSON we need a way to extract individual properties with their values and to store them as Pipeline variables for usage in further deployment steps. For that add a PowerShell task and specify [this](/ReleaseManagement/ReleaseManagement.md#Extract-variables-from-ARM-template-output) script inline. Call the task "Extract from ARM template output"
 |4.| Add the "Deploy to Kubernetes" task to your pipeline. Configure this task to setup tiller (serverside Helm) based on /ArmTemplates/setup-tiller-namespace.yaml. Use Kubernetes namespace "sampleapp" (variable?)
 |5.| Add "Helm tool installer" task to install Helm command line tool 
