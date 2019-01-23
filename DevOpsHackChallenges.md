@@ -65,6 +65,7 @@ After this challenge you'll have a system set up where you can trigger a new bui
 
 ## Achievements ##
 **In case you do not have an Azure Container Registry you can use the ARM template located here /ArmTemplates/containerRegistry-template.json to create one. Use an appropriate build task for that**
+
 | # | Achievement   |
 |-|-|
 |1.| Create a new build definition named "CI Build" under Pipelines --> Builds. Choose **Use the visual designer**
