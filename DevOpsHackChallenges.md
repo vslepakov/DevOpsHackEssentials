@@ -30,7 +30,7 @@ Azure DevOps brings Work Management in a default way and very often it is not ne
 
 ## Achievements ##
 Following links will help you to understand workitem management:
-[Scrum process in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=vsts)
+[Scrum process in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=vsts)  
 [Define features and epics](https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/define-features-epics?view=vsts&tabs=new-nav)
 
 | # | Achievement   |
