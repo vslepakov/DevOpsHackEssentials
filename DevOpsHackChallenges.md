@@ -29,7 +29,7 @@ If you need help check out the [:blue_book: WorkItem Management Hints](/WorkItem
 Azure DevOps brings Work Management in a default way and very often it is not necessary to apply customizations. After this challenge you will have learned about how to customize some areas of work management in Azure DevOps. You'll also modify some of the display options of work Azure Boards and learn about linkning work items and using the dashboard.
 
 ## Achievements ##
-Following links will help you to understand workitem management:
+Following links will help you to understand workitem management:  
 [Scrum process in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=vsts)  
 [Define features and epics](https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/define-features-epics?view=vsts&tabs=new-nav)
 
@@ -41,7 +41,8 @@ Following links will help you to understand workitem management:
 |4.| Add a custom state Testing for your product backlog items
 |5.| Link work items, view history
 |6.| Plan and display team capacity for a srint
-|7.| Modify dashboard to show team members, sprint capacity, your current workitems, sprint burndown
+|7.| Create a shared query to display all bugs in the current sprint. Group them by state *Hint: use "Chart for Work Items" widget*
+|8.| Modify dashboard to show team members, sprint capacity, your current workitems, sprint burndown
 
 # DevOps Challenge \#3 - Version Control #
 In this challenge, you will set up version control, upload code and configure policies.

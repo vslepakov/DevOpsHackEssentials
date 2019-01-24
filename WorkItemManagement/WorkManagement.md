@@ -20,6 +20,10 @@ Tip: Create a new work item, then view the settings of the board once there is a
 
 ![view history](/WorkItemManagement/images/view_history.PNG)
 
+## Create a shared query to display all bugs in the current sprint
+![Create new query](/WorkItemManagement/images/create_new_query.PNG)
+![All bugs in sprint](/WorkItemManagement/images/bug_query.PNG)
+
 ## Plan and display team capacity for a srint ##
 ![Plan team capacity](/WorkItemManagement/images/team_capacity.PNG)
 
