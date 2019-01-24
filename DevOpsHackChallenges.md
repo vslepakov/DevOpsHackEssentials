@@ -9,7 +9,7 @@ Think of Azure DevOps as an integrated solution to support you throughout develo
 * Azure DevOps is not limited in the kind of applications you want to create - it works with any kind of source code, can trigger builds and deployments from and to Linux, Windows and Mac OS (and others) and supports working with containers and all kinds of clouds.
 
 # DevOps Challenge \#1 - Azure DevOps Project Setup #
-In this challenge we assume that already have an Azure DevOps organization. You will invite users, set up a project and create a team with your colleagues. If you need help check out the [:blue_book: hints for this challenge](/FirstSteps/FirstSteps.md).
+In this challenge we assume that you already have an Azure DevOps organization. You will invite users, set up a project and create a team with your colleagues. If you need help check out the [:blue_book: hints for this challenge](/FirstSteps/FirstSteps.md).
 If an Azure DevOps organization has already been set up for you, skip the corresponding steps.
 
 ## Achievements ##
@@ -29,6 +29,10 @@ If you need help check out the [:blue_book: WorkItem Management Hints](/WorkItem
 Azure DevOps brings Work Management in a default way and very often it is not necessary to apply customizations. After this challenge you will have learned about how to customize some areas of work management in Azure DevOps. You'll also modify some of the display options of work Azure Boards and learn about linkning work items and using the dashboard.
 
 ## Achievements ##
+Following links will help you to understand workitem management:
+[Scrum process in Azure DevOps](https://docs.microsoft.com/en-us/azure/devops/boards/work-items/guidance/scrum-process-workflow?view=vsts)
+[Define features and epics](https://docs.microsoft.com/en-us/azure/devops/boards/backlogs/define-features-epics?view=vsts&tabs=new-nav)
+
 | # | Achievement   |
 |-|-|
 |1.| Create sample work items with releationships (e.g. parent/child). Create them in a hierarchical manner. Start at Feature / Epic level and build up the whole tree down to Task level. Create the hierarchy using the "Frontend" and/or "Backend" areas. Create a bug.
@@ -79,7 +83,8 @@ After this challenge you'll have a system set up where you can trigger a new bui
 |9.| On the cloned "PR Build" definition remove the continuous integration trigger
 |10.| Add a "bash" task to the "PR Build" definition and configure it to output the string "Simulating very heavy testing" using "echo"
 |11.| Modify your source code, push the code, trigger a PR and follow the Pipeline in the UI. You will be able to see the build output in realtime.
-|12.| **Optional**: Combine "Build an image" and "Push an image" tasks to a Task Group and reuse it. Extract a variables for Azure Container Registry first. On the newly created Task Group make required Azure Subscription a variable
+|12.| Configure your dashboard to display information about builds
+|13.| **Optional**: Combine "Build an image" and "Push an image" tasks to a Task Group and reuse it. Extract a variables for Azure Container Registry first. On the newly created Task Group make required Azure Subscription a variable
 
 
 # DevOps Challenge \#5 - Release Management #
@@ -101,6 +106,7 @@ After this challenge you'll be able to deploy the sample application to an envir
 |7.| Finally add "Package and deploy Helm charts" task, name it "Helm upgrade" and configure it to deploy our Helm chart using the "upgrade" command. Pass [these arguments](/ReleaseManagement/ReleaseManagement.md#helm-upgrade-arguments)
 |8.| After a successful release investigate the information in the release overview - see how you can navigate between releases, corresponding builds, source code artifacts, pull request and related work items via linked items
 |9.| Create another release environment called "Staging" and configure it to require manual approval
+|10.| Configure your dashboard to display information about releases
 
 # CONGRATULATIONS #
 Congrats! You've accomplished the essential challenges. Now take a step back, relax and explore: Azure DevOps automatically combines all the information you provide - see if you can find an easy way to figure out which features have been implemented newly in your latest release compared to prevouos releases?
