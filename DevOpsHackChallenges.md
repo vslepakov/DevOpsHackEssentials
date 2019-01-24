@@ -19,7 +19,7 @@ If an Azure DevOps organization has already been set up for you, skip the corres
 |2.| Create a Project called HelloWorld
 |3.| Create a team named "Frontend" and a team named "Backend"
 |4.| Add team members to your teams
-|5.| Create a Wiki with an "Overview" page
+|5.| Create a Wiki with an "Overview" page. *Hint: Check out [Azure DevOps Wiki syntax guidance](https://docs.microsoft.com/en-us/azure/devops/project/wiki/markdown-guidance?view=vsts) 
 
 # DevOps Challenge \#2 - Work Management #
 In this challenge, you will configure Azure DevOps to trace and plan your work.
