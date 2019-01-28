@@ -1,11 +1,11 @@
-# DevOps Hack Essentials 2018 - Guidance
+# DevOps Hack Essentials 2019 - Guidance
 This content is intended to be used for a led lab provided by Microsoft.
 
 The intent is to provide a hands-on experience with Azure DevOps. Most challenges are operating system agnostic, and can be accomplished within a browser or using a Git client.
 
 You can find all challenges in [this][1] document.
 
-Here'show it works:
+Here is how it works:
 1. Find a bunch of colleagues to build a team and work together. (Ideally you form a team of 2-5 people.)
 1. Go read the [challenges document][1].
 1. Tackle the challenges one by one.
